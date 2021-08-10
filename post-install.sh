@@ -3,12 +3,6 @@ export DM="${DEV##*/}"
 export DEVP="${DEV}$( if [[ "$DEV" =~ "nvme" ]]; then echo "p"; fi )"
 export DM="${DM}$( if [[ "$DM" =~ "nvme" ]]; then echo "p"; fi )"
 
-mount /dev/mapper/ubuntu--vg-root /target
-for n in proc sys dev etc/resolv.conf; do mount --rbind /$n /target/$n; done 
-chroot /target
-
-mount -a
-
 apt install -y cryptsetup-initramfs
 
 echo "KEYFILE_PATTERN=/etc/luks/*.keyfile" >> /etc/cryptsetup-initramfs/conf-hook 
