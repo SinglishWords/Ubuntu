@@ -1,4 +1,4 @@
-export DEV="/dev/vda"
+export DEV="/dev/sda"
 export DM="${DEV##*/}"
 export DEVP="${DEV}$( if [[ "$DEV" =~ "nvme" ]]; then echo "p"; fi )"
 export DM="${DM}$( if [[ "$DM" =~ "nvme" ]]; then echo "p"; fi )"

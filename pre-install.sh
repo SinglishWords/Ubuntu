@@ -1,4 +1,4 @@
-export DEV="/dev/vda"
+export DEV="/dev/sda"
 export DM="${DEV##*/}"
 export DEVP="${DEV}$( if [[ "$DEV" =~ "nvme" ]]; then echo "p"; fi )"
 export DM="${DM}$( if [[ "$DM" =~ "nvme" ]]; then echo "p"; fi )"
@@ -44,11 +44,11 @@ mkfs.vfat -F 16 -n EFI-SP ${DEVP}3
 pvcreate /dev/mapper/${DM}5_crypt
 vgcreate ubuntu-vg /dev/mapper/${DM}5_crypt
 
-lvcreate -n root -L 50G ubuntu-vg
-lvcreate -n tmp -L 10G ubuntu-vg
-lvcreate -n var -L 10G ubuntu-vg
-lvcreate -n vartmp -L 10G ubuntu-vg
-lvcreate -n varlog -L 10G ubuntu-vg
-lvcreate -n varlogaudit -L 10G ubuntu-vg
-lvcreate -n home -L 10G ubuntu-vg
+lvcreate -n root -L 100G ubuntu-vg
+lvcreate -n tmp -L 50G ubuntu-vg
+lvcreate -n var -L 50G ubuntu-vg
+lvcreate -n vartmp -L 50G ubuntu-vg
+lvcreate -n varlog -L 50G ubuntu-vg
+lvcreate -n varlogaudit -L 50G ubuntu-vg
+lvcreate -n home -L 50G ubuntu-vg
 
